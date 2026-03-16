@@ -1167,7 +1167,6 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
             <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
               <strong style="color:var(--pink);font-size:0.85rem">Manifest Failure Example</strong><br><br>
               <strong style="color:var(--text)">Question:</strong> <span style="font-size:0.8rem" dir="rtl">"كم بلغ عدد خريجي التخصصات الصحية في العام الماضي (2025)؟"</span><br>
-              <span style="opacity:0.5;font-size:0.7rem">(How many health specialization graduates were there in 2025?)</span><br><br>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.3rem 0">
                 <div style="background:rgba(253,121,168,0.06);border:1px solid rgba(253,121,168,0.2);border-radius:8px;padding:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.63rem;line-height:1.7">
                   <div style="font-size:0.6rem;font-weight:700;color:var(--pink);margin-bottom:0.3rem;font-family:'Inter',sans-serif">MODEL OUTPUT (wrong)</div>
@@ -1182,10 +1181,6 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
                   &nbsp;&nbsp;<span style="opacity:0.5">AND major_classification...</span><br><br>
                   <span style="color:var(--green);font-size:0.6rem;font-family:'Inter',sans-serif">← No qualification filter</span>
                 </div>
-              </div>
-              <div style="display:flex;gap:1.5rem;margin-top:0.6rem;font-size:0.72rem">
-                <span><strong style="color:var(--pink)">Model:</strong> 10,763 graduates</span>
-                <span><strong style="color:var(--green)">Expected:</strong> 11,802 graduates</span>
               </div>
               <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:var(--bg3);border-radius:6px;font-size:0.72rem">
                 <strong style="color:var(--yellow)">Root cause:</strong> The manifest (system instructions) incorrectly tells the model to always filter by qualification type. This extra filter excludes valid graduates. <strong style="color:var(--text)">This is a data/guideline issue — not a model reasoning error. The manifest needs updating.</strong>
