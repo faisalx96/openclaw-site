@@ -1095,78 +1095,119 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
 
       <div style="display:flex;flex-direction:column;gap:1.2rem">
 
-        <!-- Conversation 1: Recent runs leaderboard -->
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
-            <span style="font-size:1rem">💬</span>
-            <span style="font-size:0.82rem;font-weight:700;color:var(--accent2)">Model Leaderboard on Demand</span>
+        <!-- Conversation 1: What tasks exist -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
+              <span style="font-size:1rem">📋</span>
+              <span style="font-size:0.82rem;font-weight:700;color:var(--accent2)">Discover Tasks</span>
+            </div>
+            <div style="background:var(--bg3);border-radius:10px;padding:0.8rem;display:flex;flex-direction:column;gap:0.5rem">
+              <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.4rem 0.7rem;border-radius:10px 10px 3px 10px;font-size:0.75rem">What tasks have been evaluated in qym?</div>
+              <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.5rem 0.7rem;border-radius:10px 10px 10px 3px;font-size:0.72rem;color:var(--text2);line-height:1.6">
+                <table style="width:100%;border-collapse:collapse;font-size:0.68rem;font-family:'JetBrains Mono',monospace">
+                  <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.25rem 0.4rem;color:var(--text)">Task</th><th style="padding:0.25rem 0.4rem;color:var(--text);text-align:right">Runs</th></tr>
+                  <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.2rem 0.4rem">rag_qa_task</td><td style="padding:0.2rem 0.4rem;text-align:right">15</td></tr>
+                  <tr><td style="padding:0.2rem 0.4rem">sql_agent_task</td><td style="padding:0.2rem 0.4rem;text-align:right">12</td></tr>
+                </table>
+                <div style="margin-top:0.4rem;font-size:0.68rem;opacity:0.6">Total: 27 runs across 2 tasks.</div>
+              </div>
+            </div>
           </div>
-          <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.6rem">
-            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">What are the most recent runs in qym?</div>
-            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.7rem 0.9rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
-              Here are your 10 most recent runs (all from Mar 14 on <strong style="color:var(--text)">sql_agent_task</strong>):<br><br>
-              <table style="width:100%;border-collapse:collapse;font-size:0.68rem;font-family:'JetBrains Mono',monospace">
-                <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.3rem 0.5rem;color:var(--text)">Model</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Accuracy</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Valid SQL</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Cost</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Latency</th></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:600">claude-opus-4.6</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--green);font-weight:700">0.69</td><td style="padding:0.25rem 0.4rem;text-align:center">0.97</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.052</td><td style="padding:0.25rem 0.4rem;text-align:center">12.1s</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:600">gpt-5.4</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--green);font-weight:700">0.68</td><td style="padding:0.25rem 0.4rem;text-align:center">1.0</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.011</td><td style="padding:0.25rem 0.4rem;text-align:center">4.1s</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">qwen3-coder</td><td style="padding:0.25rem 0.4rem;text-align:center">0.68</td><td style="padding:0.25rem 0.4rem;text-align:center">0.99</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.005</td><td style="padding:0.25rem 0.4rem;text-align:center">9.5s</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">glm-5</td><td style="padding:0.25rem 0.4rem;text-align:center">0.66</td><td style="padding:0.25rem 0.4rem;text-align:center">0.98</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.009</td><td style="padding:0.25rem 0.4rem;text-align:center">17.8s</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--orange)">minimax-m2.5</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--orange)">0.56</td><td style="padding:0.25rem 0.4rem;text-align:center">1.0</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.007</td><td style="padding:0.25rem 0.4rem;text-align:center">8.5s</td></tr>
-                <tr><td style="padding:0.25rem 0.5rem;color:var(--pink)">kimi-k2.5</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--pink)">0.50</td><td style="padding:0.25rem 0.4rem;text-align:center">0.71</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.005</td><td style="padding:0.25rem 0.4rem;text-align:center">16.1s</td></tr>
-              </table>
-              <br><strong style="color:var(--text)">Top performers:</strong> Claude Opus 4.6 (69%) and GPT-5.4 (68%) lead on accuracy. GPT-5.4 has the best speed/cost ratio.<br><br><em style="opacity:0.5">Want me to dig into any specific run or compare models?</em>
+
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
+              <span style="font-size:1rem">🔎</span>
+              <span style="font-size:0.82rem;font-weight:700;color:var(--cyan)">Understand a Task</span>
+            </div>
+            <div style="background:var(--bg3);border-radius:10px;padding:0.8rem;display:flex;flex-direction:column;gap:0.5rem">
+              <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.4rem 0.7rem;border-radius:10px 10px 3px 10px;font-size:0.75rem">What is sql_agent_task?</div>
+              <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.5rem 0.7rem;border-radius:10px 10px 10px 3px;font-size:0.72rem;color:var(--text2);line-height:1.6">
+                A text-to-SQL evaluation using the <strong style="color:var(--text)">BIRD Mini-Dev</strong> benchmark (100 questions).<br><br>
+                The agent inspects schema → writes SQL → executes it → compares against gold.<br><br>
+                <strong style="color:var(--text)">Metrics:</strong> exec_accuracy, valid_sql, reward_ves, agent_steps, tool_calls
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Conversation 2: Best run + dataset drill-down (combined) -->
+        <!-- Conversation 2: Full leaderboard -->
         <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
           <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
             <span style="font-size:1rem">🏆</span>
-            <span style="font-size:0.82rem;font-weight:700;color:var(--cyan)">Multi-Turn Investigation</span>
+            <span style="font-size:0.82rem;font-weight:700;color:var(--accent2)">Full Model Leaderboard</span>
           </div>
-          <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.5rem">
-            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.4rem 0.7rem;border-radius:10px 10px 3px 10px;font-size:0.75rem">What's the best run for insightor_api?</div>
-            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.5rem 0.7rem;border-radius:10px 10px 10px 3px;font-size:0.72rem;color:var(--text2);line-height:1.6">
-              <strong style="color:var(--cyan)">🏆 Qwen3.5-397b-a17b-T — 40% accuracy</strong><br>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem">1a6e464c</span> · 100 items · Mar 7 · Most reliable (largest sample).<br>
-              <em style="opacity:0.5">Qwen3-Coder-480B runs scored 0-29%.</em>
-            </div>
-            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.4rem 0.7rem;border-radius:10px 10px 3px 10px;font-size:0.75rem">What dataset was that on?</div>
-            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.5rem 0.7rem;border-radius:10px 10px 10px 3px;font-size:0.72rem;color:var(--text2);line-height:1.6">
-              Best run was on <strong style="color:var(--text)">in_scope_eval_4</strong> — 100 items, 40% accuracy.<br>
-              The other 40% runs used <strong style="color:var(--text)">eval_sample</strong> (50 items) — fewer items, less reliable.
+          <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.6rem">
+            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">What models were used and what are the best performers?</div>
+            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.7rem 0.9rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
+              <strong style="color:var(--text);font-size:0.85rem">sql_agent_task — Full Metrics</strong><br><br>
+              <table style="width:100%;border-collapse:collapse;font-size:0.68rem;font-family:'JetBrains Mono',monospace">
+                <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.3rem 0.5rem;color:var(--text)">Model</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Accuracy</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Valid SQL</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Cost</th><th style="padding:0.3rem 0.4rem;color:var(--text)">Latency</th></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:600">claude-opus-4.6</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--green);font-weight:700">69%</td><td style="padding:0.25rem 0.4rem;text-align:center">97%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.052</td><td style="padding:0.25rem 0.4rem;text-align:center">12.1s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:600">gpt-5.4</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--green);font-weight:700">68%</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--green)">100%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.011</td><td style="padding:0.25rem 0.4rem;text-align:center">4.1s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">qwen3-coder</td><td style="padding:0.25rem 0.4rem;text-align:center">68%</td><td style="padding:0.25rem 0.4rem;text-align:center">99%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.005</td><td style="padding:0.25rem 0.4rem;text-align:center">9.5s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">qwen3.5-397b</td><td style="padding:0.25rem 0.4rem;text-align:center">67%</td><td style="padding:0.25rem 0.4rem;text-align:center">99%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.010</td><td style="padding:0.25rem 0.4rem;text-align:center">24.7s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">glm-5</td><td style="padding:0.25rem 0.4rem;text-align:center">66%</td><td style="padding:0.25rem 0.4rem;text-align:center">98%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.009</td><td style="padding:0.25rem 0.4rem;text-align:center">17.8s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--orange)">minimax-m2.5</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--orange)">56%</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--green)">100%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.007</td><td style="padding:0.25rem 0.4rem;text-align:center">8.5s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--orange)">gpt-oss-120b</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--orange)">55%</td><td style="padding:0.25rem 0.4rem;text-align:center">96%</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--cyan)">$0.001</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--cyan)">3.7s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--pink)">kimi-k2.5</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--pink)">50%</td><td style="padding:0.25rem 0.4rem;text-align:center">71%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.005</td><td style="padding:0.25rem 0.4rem;text-align:center">16.1s</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--pink)">qwen3.5-27b</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--pink)">46%</td><td style="padding:0.25rem 0.4rem;text-align:center">62%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.003</td><td style="padding:0.25rem 0.4rem;text-align:center">14.8s</td></tr>
+                <tr><td style="padding:0.25rem 0.5rem;color:var(--pink)">qwen3.5-9b</td><td style="padding:0.25rem 0.4rem;text-align:center;color:var(--pink)">31%</td><td style="padding:0.25rem 0.4rem;text-align:center">41%</td><td style="padding:0.25rem 0.4rem;text-align:center">$0.001</td><td style="padding:0.25rem 0.4rem;text-align:center">10.8s</td></tr>
+              </table>
+              <br>
+              <strong style="color:var(--text)">Best by category:</strong><br>
+              <span style="color:var(--green)">Accuracy:</span> claude-opus-4.6 (69%) · <span style="color:var(--green)">Valid SQL:</span> gpt-5.4 & minimax (100%)<br>
+              <span style="color:var(--cyan)">Cheapest:</span> qwen3.5-9b ($0.001) · <span style="color:var(--cyan)">Fastest:</span> gpt-oss-120b (3.7s)<br>
+              <span style="color:var(--yellow)">Best value:</span> qwen3-coder — 68% accuracy, 99% valid, $0.005
             </div>
           </div>
         </div>
 
-        <!-- Conversation 3: Root cause + manifest failure (combined) -->
+        <!-- Conversation 3: Head-to-head comparison -->
         <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
           <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
-            <span style="font-size:1rem">🔍</span>
-            <span style="font-size:0.82rem;font-weight:700;color:var(--yellow)">Root Cause Analysis + Failure Deep-Dive</span>
+            <span style="font-size:1rem">⚔️</span>
+            <span style="font-size:0.82rem;font-weight:700;color:var(--cyan)">Head-to-Head Model Comparison</span>
           </div>
           <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.6rem">
-            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Give me a summary on its root cause analysis</div>
+            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Compare items between claude-opus-4.6 and qwen3.5-397b and give me their strengths and weaknesses</div>
             <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
-              <strong style="color:var(--yellow);font-size:0.85rem">Root Cause Analysis — insightor_api</strong><br>
-              <span style="font-size:0.7rem;opacity:0.6">60% failed (60/100 items) — Qwen3.5-397b-a17b-T</span><br><br>
-              <table style="width:100%;border-collapse:collapse;font-size:0.68rem;font-family:'JetBrains Mono',monospace">
-                <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.3rem 0.5rem;color:var(--text)">Root Cause</th><th style="padding:0.3rem 0.5rem;color:var(--text);text-align:right">Count</th></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem;color:var(--pink);font-weight:600">Reasoning Error</td><td style="padding:0.25rem 0.5rem;text-align:right;color:var(--pink);font-weight:700">36 (60%)</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Manifest</td><td style="padding:0.25rem 0.5rem;text-align:right">8</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Instruction Following</td><td style="padding:0.25rem 0.5rem;text-align:right">7</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Gold/Ground-Truth Query</td><td style="padding:0.25rem 0.5rem;text-align:right">4</td></tr>
-                <tr><td style="padding:0.25rem 0.5rem">Question Understanding</td><td style="padding:0.25rem 0.5rem;text-align:right">1</td></tr>
+              <strong style="color:var(--cyan);font-size:0.85rem">Item-by-Item Comparison</strong><br><br>
+              <table style="width:100%;border-collapse:collapse;font-size:0.7rem;font-family:'JetBrains Mono',monospace;max-width:280px">
+                <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.25rem 0.5rem;color:var(--text)">Result</th><th style="padding:0.25rem 0.5rem;color:var(--text);text-align:right">Items</th></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.2rem 0.5rem;color:var(--green)">Both correct</td><td style="padding:0.2rem 0.5rem;text-align:right;color:var(--green);font-weight:700">63</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.2rem 0.5rem;color:var(--pink)">Both wrong</td><td style="padding:0.2rem 0.5rem;text-align:right">27</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.2rem 0.5rem">Claude only ✓</td><td style="padding:0.2rem 0.5rem;text-align:right">6</td></tr>
+                <tr><td style="padding:0.2rem 0.5rem">Qwen only ✓</td><td style="padding:0.2rem 0.5rem;text-align:right">4</td></tr>
               </table>
               <br>
-              <strong style="color:var(--text)">By complexity:</strong> Medium: 30 · Simple: 20 · Complex: 10<br>
-              <strong style="color:var(--yellow)">Key insight:</strong> Most failures (60%) are <strong>reasoning errors</strong> — the model gets the logic wrong, not the SQL syntax.
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem">
+                <div style="padding:0.5rem;background:var(--bg3);border-radius:8px;border-left:2px solid var(--accent2)">
+                  <div style="font-size:0.68rem;font-weight:700;color:var(--accent2);margin-bottom:0.2rem">Claude-opus-4.6</div>
+                  <div style="font-size:0.65rem;color:var(--text2);line-height:1.5">✅ 6 exclusive wins<br>✅ Fewer steps (more efficient)<br>✅ Faster to answer</div>
+                </div>
+                <div style="padding:0.5rem;background:var(--bg3);border-radius:8px;border-left:2px solid var(--cyan)">
+                  <div style="font-size:0.68rem;font-weight:700;color:var(--cyan);margin-bottom:0.2rem">Qwen3.5-397b</div>
+                  <div style="font-size:0.65rem;color:var(--text2);line-height:1.5">✅ 4 exclusive wins<br>✅ Tests more queries (thorough)<br>✅ Tries harder on hard items</div>
+                </div>
+              </div>
+              <br>
+              <strong style="color:var(--yellow)">Key insight:</strong> They agree on 90/100 items. Qwen tests 1.9 queries avg vs Claude's 1.1 — but doesn't gain accuracy. Claude is more efficient: fewer steps, faster, slightly better.
             </div>
+          </div>
+        </div>
+
+        <!-- Conversation 4: Manifest failure -->
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
+            <span style="font-size:1rem">🐛</span>
+            <span style="font-size:0.82rem;font-weight:700;color:var(--pink)">Failure Deep-Dive</span>
+          </div>
+          <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.6rem">
             <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Show me an example where it failed because of the manifest</div>
             <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
               <strong style="color:var(--pink);font-size:0.85rem">Manifest Failure Example</strong><br><br>
-              <strong style="color:var(--text)">Question:</strong> <span style="font-size:0.8rem" dir="rtl">"كم بلغ عدد خريجي التخصصات الصحية في العام الماضي (2025)؟"</span><br>
+              <strong style="color:var(--text)">Question:</strong> <span style="font-size:0.8rem" dir="rtl">"كم بلغ عدد خريجي التخصصات الصحية في العام الماضي (2025)؟"</span><br><br>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.3rem 0">
                 <div style="background:rgba(253,121,168,0.06);border:1px solid rgba(253,121,168,0.2);border-radius:8px;padding:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.63rem;line-height:1.7">
                   <div style="font-size:0.6rem;font-weight:700;color:var(--pink);margin-bottom:0.3rem;font-family:'Inter',sans-serif">MODEL OUTPUT (wrong)</div>
@@ -1183,45 +1224,13 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
                 </div>
               </div>
               <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:var(--bg3);border-radius:6px;font-size:0.72rem">
-                <strong style="color:var(--yellow)">Root cause:</strong> The manifest (system instructions) incorrectly tells the model to always filter by qualification type. This extra filter excludes valid graduates. <strong style="color:var(--text)">This is a data/guideline issue — not a model reasoning error. The manifest needs updating.</strong>
+                <strong style="color:var(--yellow)">Root cause:</strong> The manifest incorrectly tells the model to always filter by qualification type. <strong style="color:var(--text)">This is a data/guideline issue — not a model error. The manifest needs updating.</strong>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Conversation 4: Run an eval -->
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
-            <span style="font-size:1rem">🚀</span>
-            <span style="font-size:0.82rem;font-weight:700;color:var(--green)">Trigger an Evaluation</span>
-          </div>
-          <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.5rem">
-            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Run the sql_agent_task eval on claude-opus-4.6 using the in_scope_eval_4 dataset with exec_accuracy and valid_sql metrics</div>
-            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.5rem 0.7rem;border-radius:10px 10px 10px 3px;font-size:0.72rem;color:var(--text2);line-height:1.6">
-              <span style="opacity:0.5">Starting evaluation...</span>
-            </div>
-            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.7rem 0.9rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
-              <strong style="color:var(--green);font-size:0.85rem">✅ Evaluation Complete</strong><br><br>
-              <table style="width:100%;border-collapse:collapse;font-size:0.68rem;font-family:'JetBrains Mono',monospace">
-                <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.3rem 0.5rem;color:var(--text)">Detail</th><th style="padding:0.3rem 0.5rem;color:var(--text);text-align:left">Value</th></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Task</td><td style="padding:0.25rem 0.5rem;color:var(--text)">sql_agent_task</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Model</td><td style="padding:0.25rem 0.5rem;color:var(--text)">claude-opus-4.6</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Dataset</td><td style="padding:0.25rem 0.5rem;color:var(--text)">in_scope_eval_4 (100 items)</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Exec Accuracy</td><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:700">0.72</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Valid SQL</td><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:700">0.98</td></tr>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Cost</td><td style="padding:0.25rem 0.5rem;color:var(--text)">$0.048</td></tr>
-                <tr><td style="padding:0.25rem 0.5rem">Duration</td><td style="padding:0.25rem 0.5rem;color:var(--text)">4m 12s</td></tr>
-              </table>
-              <br>
-              <strong style="color:var(--green)">Improvement:</strong> Accuracy up from 0.69 → 0.72 vs previous run. 28 failures (down from 31).<br>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;opacity:0.5">Run ID: 3f8a91c2-e047-4b2d-a18c-7d5e93bf1204</span><br><br>
-              <em style="opacity:0.5">Want me to compare this against the GPT-5.4 run, or dig into the 28 failures?</em>
-            </div>
-          </div>
-        </div>
-
       </div>
-
       <div style="margin-top:1.5rem;padding:0.8rem 1rem;background:var(--bg);border-radius:10px;border:1px solid var(--border);text-align:center">
         <div style="font-size:0.85rem;color:var(--text);line-height:1.7"><strong style="color:var(--cyan)">All of this</strong> came from the same two ingredients: a CLI and a SKILL.md. No custom integration code. No API wrappers. No MCP server. The agent uses qym the same way a human would — through the terminal.</div>
       </div>
