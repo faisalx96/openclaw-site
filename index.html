@@ -1197,34 +1197,55 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
           </div>
         </div>
 
-        <!-- Conversation 4: Manifest failure -->
+        <!-- Conversation 4: Qwen failure examples -->
         <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
           <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
             <span style="font-size:1rem">🐛</span>
             <span style="font-size:0.82rem;font-weight:700;color:var(--pink)">Failure Deep-Dive</span>
           </div>
           <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.6rem">
-            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Show me an example where it failed because of the manifest</div>
+            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Show me an example where Qwen fails</div>
             <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
-              <strong style="color:var(--pink);font-size:0.85rem">Manifest Failure Example</strong><br><br>
-              <strong style="color:var(--text)">Question:</strong> <span style="font-size:0.8rem" dir="rtl">"كم بلغ عدد خريجي التخصصات الصحية في العام الماضي (2025)؟"</span><br><br>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.3rem 0">
-                <div style="background:rgba(253,121,168,0.06);border:1px solid rgba(253,121,168,0.2);border-radius:8px;padding:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.63rem;line-height:1.7">
-                  <div style="font-size:0.6rem;font-weight:700;color:var(--pink);margin-bottom:0.3rem;font-family:'Inter',sans-serif">MODEL OUTPUT (wrong)</div>
-                  <span style="opacity:0.5">WHERE</span> YEAR(graduation_date) = 2025<br>
-                  &nbsp;&nbsp;<span style="color:var(--pink)">AND qualification IN<br>&nbsp;&nbsp;&nbsp;&nbsp;('بكالوريوس','ماجستير'...)</span><br>
-                  &nbsp;&nbsp;<span style="opacity:0.5">AND major_classification...</span><br>
-                  <span style="color:var(--pink);font-size:0.6rem;font-family:'Inter',sans-serif">← Extra filter not needed</span>
+              <strong style="color:var(--pink);font-size:0.85rem">Qwen3.5-397b — Failure Examples</strong><br>
+              <span style="font-size:0.7rem;opacity:0.6">33 failures total — mostly logic errors (32 valid SQL but wrong results)</span><br><br>
+
+              <!-- Example 1 -->
+              <div style="padding:0.7rem;background:var(--bg3);border-radius:8px;border-left:2px solid var(--pink);margin-bottom:0.6rem">
+                <div style="font-size:0.68rem;font-weight:700;color:var(--pink);margin-bottom:0.3rem">Example 1: Wrong Table/Column Names</div>
+                <div style="font-size:0.72rem;color:var(--text);margin-bottom:0.4rem"><strong>Q:</strong> "List names of schools with more than 30 difference in enrollments between K-12 and ages 5-17. Also give the full street address."</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;line-height:1.6;padding:0.4rem;background:rgba(253,121,168,0.06);border-radius:6px">
+                    <span style="color:var(--pink);font-size:0.55rem;font-family:'Inter',sans-serif;font-weight:700">MODEL</span><br>
+                    SELECT <span style="color:var(--pink)">f.`School Name`</span>, s.Street<br>FROM frpm f JOIN schools s...
+                  </div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;line-height:1.6;padding:0.4rem;background:rgba(0,184,148,0.06);border-radius:6px">
+                    <span style="color:var(--green);font-size:0.55rem;font-family:'Inter',sans-serif;font-weight:700">EXPECTED</span><br>
+                    SELECT <span style="color:var(--green)">T1.School</span>, T1.Street<br>FROM schools AS T1 JOIN frpm...
+                  </div>
                 </div>
-                <div style="background:rgba(0,184,148,0.06);border:1px solid rgba(0,184,148,0.2);border-radius:8px;padding:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.63rem;line-height:1.7">
-                  <div style="font-size:0.6rem;font-weight:700;color:var(--green);margin-bottom:0.3rem;font-family:'Inter',sans-serif">EXPECTED (gold)</div>
-                  <span style="opacity:0.5">WHERE</span> YEAR(graduation_date) = 2025<br>
-                  &nbsp;&nbsp;<span style="opacity:0.5">AND major_classification...</span><br><br>
-                  <span style="color:var(--green);font-size:0.6rem;font-family:'Inter',sans-serif">← No qualification filter</span>
-                </div>
+                <div style="font-size:0.65rem;color:var(--pink);margin-top:0.3rem">❌ Uses frpm.School Name instead of schools.School</div>
               </div>
-              <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:var(--bg3);border-radius:6px;font-size:0.72rem">
-                <strong style="color:var(--yellow)">Root cause:</strong> The manifest incorrectly tells the model to always filter by qualification type. <strong style="color:var(--text)">This is a data/guideline issue — not a model error. The manifest needs updating.</strong>
+
+              <!-- Example 2 -->
+              <div style="padding:0.7rem;background:var(--bg3);border-radius:8px;border-left:2px solid var(--orange);margin-bottom:0.6rem">
+                <div style="font-size:0.68rem;font-weight:700;color:var(--orange);margin-bottom:0.3rem">Example 2: Missing GROUP BY</div>
+                <div style="font-size:0.72rem;color:var(--text);margin-bottom:0.3rem"><strong>Q:</strong> "Name schools in Riverside where the average of average math score for SAT is greater than 400"</div>
+                <div style="font-size:0.65rem;color:var(--text2)">
+                  <span style="color:var(--pink)">Model:</span> Filters individual rows WHERE AvgScrMath > 400<br>
+                  <span style="color:var(--green)">Expected:</span> HAVING AVG(AvgScrMath) > 400 with GROUP BY
+                </div>
+                <div style="font-size:0.65rem;color:var(--orange);margin-top:0.3rem">❌ Doesn't understand "average of average" requires grouping</div>
+              </div>
+
+              <!-- Example 3 -->
+              <div style="padding:0.7rem;background:var(--bg3);border-radius:8px;border-left:2px solid var(--yellow)">
+                <div style="font-size:0.68rem;font-weight:700;color:var(--yellow);margin-bottom:0.3rem">Example 3: Wrong Date Format</div>
+                <div style="font-size:0.72rem;color:var(--text);margin-bottom:0.3rem"><strong>Q:</strong> "Average number of test takers from Fresno schools that opened between 1/1/1980 and 12/31/1980?"</div>
+                <div style="font-size:0.65rem;color:var(--text2)">
+                  <span style="color:var(--pink)">Model:</span> WHERE s.OpenDate >= '1980-01-01'<br>
+                  <span style="color:var(--green)">Expected:</span> WHERE strftime('%Y', T2.OpenDate) = '1980'
+                </div>
+                <div style="font-size:0.65rem;color:var(--yellow);margin-top:0.3rem">❌ Doesn't handle SQLite date format correctly</div>
               </div>
             </div>
           </div>
