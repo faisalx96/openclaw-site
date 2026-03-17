@@ -1562,38 +1562,32 @@ const archData = {
     </div>`
   },
   memory: {
-    icon: '💾', title: 'Memory System', tag: 'Knowledge', tagColor: 'rgba(0,184,148,0.2)', tagText: '#00b894',
-    html: `<div class="detail-text">
-      <p>OpenClaw <strong>remembers context across conversations</strong> using plain Markdown files stored on your machine. These are indexed with a hybrid search engine for fast retrieval.</p>
-      <div class="dp-vis">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text2);font-weight:700;margin-bottom:0.8rem">Memory Architecture</div>
-        <div class="dp-flow">
-          <div class="dp-node"><div class="dp-node-icon" style="color:var(--green)">📄</div><div class="dp-node-label">Markdown files</div></div>
-          <div class="dp-arrow">→</div>
-          <div class="dp-node"><div class="dp-node-icon" style="color:var(--cyan)">🗂️</div><div class="dp-node-label">SQLite Index</div></div>
-          <div class="dp-arrow">→</div>
-          <div class="dp-node"><div class="dp-node-icon" style="color:var(--accent2)">🔍</div><div class="dp-node-label">Hybrid Search</div></div>
-          <div class="dp-arrow">→</div>
-          <div class="dp-node"><div class="dp-node-icon" style="color:var(--green)">✨</div><div class="dp-node-label">Relevant context</div></div>
-        </div>
-        <div style="margin-top:0.8rem;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text2);font-weight:700;margin-bottom:0.5rem">Search Method Blend</div>
-        <div class="dp-layers">
-          <div class="dp-layer" style="border-left-color:var(--cyan);opacity:1;transform:none">
-            <span style="color:var(--cyan);min-width:100px">Vector (70%)</span>
-            <span style="font-size:0.65rem;color:var(--text2)">Understands meaning</span>
-            <div class="dp-bar"><div class="dp-fill" data-w="70%" style="background:var(--cyan);width:70%"></div></div>
-          </div>
-          <div class="dp-layer" style="border-left-color:var(--orange);opacity:1;transform:none">
-            <span style="color:var(--orange);min-width:100px">BM25 (30%)</span>
-            <span style="font-size:0.65rem;color:var(--text2)">Matches exact words</span>
-            <div class="dp-bar"><div class="dp-fill" data-w="30%" style="background:var(--orange);width:30%"></div></div>
-          </div>
-        </div>
-        <div style="margin-top:0.6rem;padding:0.6rem 0.8rem;background:var(--bg3);border-radius:8px;font-size:0.75rem;color:var(--text2)">
-          <strong style="color:var(--green)">Privacy:</strong> All data stays on your machine as plain files. The search index is derived — delete the index, and it rebuilds from your Markdown files.
-        </div>
+    icon: '💾', title: 'Memory System', tag: 'Context', tagColor: 'rgba(0,184,148,0.2)', tagText: '#00b894',
+    html: `<div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+    <div class="detail-text">
+      <p style="font-size:1rem;color:var(--green);font-weight:600;margin-bottom:0.8rem">Your agent actually remembers things — not in some black-box database, but in plain text files you can read and edit yourself.</p>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.6rem">
+        <li style="display:flex;align-items:flex-start;gap:0.5rem"><span style="font-size:1rem">📝</span><span><strong>Plain Markdown files</strong> — memory lives as .md files on your disk, open them in any editor</span></li>
+        <li style="display:flex;align-items:flex-start;gap:0.5rem"><span style="font-size:1rem">📅</span><span><strong>Keeps a daily journal</strong> — every day gets its own log, yesterday + today are always loaded</span></li>
+        <li style="display:flex;align-items:flex-start;gap:0.5rem"><span style="font-size:1rem">🔍</span><span><strong>Smart search</strong> — when the agent needs older info, it searches across all notes using a hybrid keyword + meaning-based search</span></li>
+        <li style="display:flex;align-items:flex-start;gap:0.5rem"><span style="font-size:1rem">🧠</span><span><strong>You're in control</strong> — add notes, organize by topic, delete what you want — it's just files</span></li>
+      </ul>
+      <div class="arch-detail-features" style="margin-top:1rem">
+        <span class="feat">📝 Markdown files</span><span class="feat">📅 Daily logs</span><span class="feat">🔍 Smart search</span>
+        <span class="feat">🧠 You control it</span>
       </div>
-    </div>`
+    </div>
+    <div style="background:rgba(5,5,8,0.8);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:0.75rem;box-shadow:inset 0 0 20px rgba(0,0,0,0.5)">
+      <div style="background:rgba(255,255,255,0.03);padding:0.6rem 1rem;font-size:0.7rem;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.05)">What memory looks like on disk</div>
+      <pre style="padding:1rem;line-height:1.6;overflow-x:auto;white-space:pre-wrap;margin:0;color:var(--text)"><span style="color:#636e88">~/.openclaw/workspace/</span>
+├── <span style="color:#00b894">MEMORY.md</span>         <span style="color:#636e88"># your curated notes</span>
+├── <span style="color:#ffeaa7">memory/</span>
+│   ├── <span style="color:#00b894">2026-03-13.md</span> <span style="color:#636e88"># today's log</span>
+│   ├── <span style="color:#00b894">2026-03-12.md</span> <span style="color:#636e88"># yesterday</span>
+│   ├── <span style="color:#00b894">network.md</span>    <span style="color:#636e88"># your topic notes</span>
+│   └── <span style="color:#00b894">website-v2.md</span> <span style="color:#636e88"># your topic notes</span>
+└── <span style="color:#ffeaa7">HEARTBEAT.md</span>     <span style="color:#636e88"># proactive tasks</span></pre>
+    </div></div>`
   },
   skills: {
     icon: '⚡', title: 'Skills (Plugins)', tag: 'Extensions', tagColor: 'rgba(225,112,85,0.2)', tagText: '#e17055',
