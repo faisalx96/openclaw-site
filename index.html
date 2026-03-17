@@ -549,6 +549,19 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
         </div>
       </div>
 
+      <!-- Detail panel (memory only) -->
+      <div class="arch-detail" id="archDetail">
+        <div class="arch-detail-inner" id="archDetailInner">
+          <button class="arch-detail-close" onclick="closeArch()">×</button>
+          <div class="arch-detail-head">
+            <div class="arch-detail-icon" id="adIcon">💾</div>
+            <div><h4 id="adTitle">Memory System</h4></div>
+            <span class="detail-tag" id="adTag" style="background:rgba(0,184,148,0.2);color:#00b894">Knowledge</span>
+          </div>
+          <div class="arch-detail-body" id="adBody"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1768,12 +1781,26 @@ function animatePanel(key) {
 }
 
 function showArch(key) {
-  animatePanel(key);
   document.querySelectorAll('.node-bg').forEach(n => n.classList.remove('active'));
   const g = document.querySelector(`[data-node="${key}"]`);
   if (g) g.querySelector('.node-bg').classList.add('active');
+
+  // Only show detail panel for memory
+  if (key === 'memory') {
+    const d = archData[key]; if (!d) return;
+    document.getElementById('adIcon').textContent = d.icon;
+    document.getElementById('adTitle').textContent = d.title;
+    const tag = document.getElementById('adTag');
+    tag.textContent = d.tag; tag.style.background = d.tagColor; tag.style.color = d.tagText;
+    document.getElementById('adBody').innerHTML = d.html;
+    document.getElementById('archDetail').classList.add('open');
+    animatePanel(key);
+  } else {
+    document.getElementById('archDetail').classList.remove('open');
+  }
 }
 function closeArch() {
+  document.getElementById('archDetail').classList.remove('open');
   document.querySelectorAll('.node-bg').forEach(n => n.classList.remove('active'));
 }
 
