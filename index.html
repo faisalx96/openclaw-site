@@ -1251,6 +1251,37 @@ footer{text-align:center;padding:4rem 2rem;color:var(--text2);font-size:0.8rem;b
           </div>
         </div>
 
+        <!-- Conversation 5: Run an evaluation -->
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.2rem;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem">
+            <span style="font-size:1rem">🚀</span>
+            <span style="font-size:0.82rem;font-weight:700;color:var(--green)">Trigger an Evaluation</span>
+          </div>
+          <div style="background:var(--bg3);border-radius:10px;padding:1rem;display:flex;flex-direction:column;gap:0.5rem">
+            <div style="align-self:flex-end;background:var(--accent);color:#fff;padding:0.5rem 0.8rem;border-radius:12px 12px 3px 12px;font-size:0.8rem">Run the sql_agent_task eval on claude-opus-4.6 using the in_scope_eval_4 dataset with exec_accuracy and valid_sql metrics</div>
+            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.5rem 0.7rem;border-radius:10px 10px 10px 3px;font-size:0.72rem;color:var(--text2);line-height:1.6">
+              <span style="opacity:0.5">Starting evaluation...</span>
+            </div>
+            <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);padding:0.7rem 0.9rem;border-radius:12px 12px 12px 3px;font-size:0.75rem;color:var(--text2);line-height:1.6;max-width:95%">
+              <strong style="color:var(--green);font-size:0.85rem">✅ Evaluation Complete</strong><br><br>
+              <table style="width:100%;border-collapse:collapse;font-size:0.68rem;font-family:'JetBrains Mono',monospace">
+                <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:0.3rem 0.5rem;color:var(--text)">Detail</th><th style="padding:0.3rem 0.5rem;color:var(--text);text-align:left">Value</th></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Task</td><td style="padding:0.25rem 0.5rem;color:var(--text)">sql_agent_task</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Model</td><td style="padding:0.25rem 0.5rem;color:var(--text)">claude-opus-4.6</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Dataset</td><td style="padding:0.25rem 0.5rem;color:var(--text)">in_scope_eval_4 (100 items)</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Exec Accuracy</td><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:700">0.72</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Valid SQL</td><td style="padding:0.25rem 0.5rem;color:var(--green);font-weight:700">0.98</td></tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:0.25rem 0.5rem">Cost</td><td style="padding:0.25rem 0.5rem;color:var(--text)">$0.048</td></tr>
+                <tr><td style="padding:0.25rem 0.5rem">Duration</td><td style="padding:0.25rem 0.5rem;color:var(--text)">4m 12s</td></tr>
+              </table>
+              <br>
+              <strong style="color:var(--green)">Improvement:</strong> Accuracy up from 0.69 → 0.72 vs previous run. 28 failures (down from 31).<br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;opacity:0.5">Run ID: 3f8a91c2-e047-4b2d-a18c-7d5e93bf1204</span><br><br>
+              <em style="opacity:0.5">Want me to compare this against the GPT-5.4 run, or dig into the 28 failures?</em>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div style="margin-top:1.5rem;padding:0.8rem 1rem;background:var(--bg);border-radius:10px;border:1px solid var(--border);text-align:center">
         <div style="font-size:0.85rem;color:var(--text);line-height:1.7"><strong style="color:var(--cyan)">All of this</strong> came from the same two ingredients: a CLI and a SKILL.md. No custom integration code. No API wrappers. No MCP server. The agent uses qym the same way a human would — through the terminal.</div>
